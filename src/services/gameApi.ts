@@ -1,47 +1,120 @@
 import type { Game } from '../types/game';
 import type { ThemeType } from '../types/theme';
 
-const API_KEY = 'a7bbbda5551a49c2826cd3e85a3db86c';
-const BASE_URL = 'https://api.rawg.io/api';
-
-const themeQueries: Record<ThemeType, string> = {
-  vaporwave: 'cyberpunk,synthwave',
-  fantasy: 'fantasy,magic,medieval',
-  horror: 'horror,survival-horror,zombie',
-  oldstyle: 'retro,classic,arcade',
-  retro: 'platformer,indie,pixel-graphics'
-};
-
-const genreIds: Record<ThemeType, number> = {
-  vaporwave: 51,
-  fantasy: 51,
-  horror: 3,
-  oldstyle: 4,
-  retro: 83
+const themeGames: Record<ThemeType, Game[]> = {
+  vaporwave: [
+    { id: 1, name: 'Cyberpunk 2077', background_image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&h=400&fit=crop' },
+    { id: 2, name: 'Neon Racer', background_image: 'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=600&h=400&fit=crop' },
+    { id: 3, name: 'Synthwave City', background_image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=400&fit=crop' },
+    { id: 4, name: 'Digital Dreams', background_image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop' },
+    { id: 5, name: 'Neon Nights', background_image: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=600&h=400&fit=crop' },
+    { id: 6, name: 'Cyber Protocol', background_image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&h=400&fit=crop' },
+    { id: 7, name: 'Vaporwave Quest', background_image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&h=400&fit=crop' },
+    { id: 8, name: 'Retro Future', background_image: 'https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=600&h=400&fit=crop' },
+    { id: 9, name: 'Grid Runner', background_image: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=600&h=400&fit=crop' },
+    { id: 10, name: 'Neon Blade', background_image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&h=400&fit=crop' },
+    { id: 11, name: 'Cyber Knight', background_image: 'https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=600&h=400&fit=crop' },
+    { id: 12, name: 'Tech Warrior', background_image: 'https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=600&h=400&fit=crop' },
+    { id: 13, name: 'Virtual Hero', background_image: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=600&h=400&fit=crop' },
+    { id: 14, name: 'Neon Samurai', background_image: 'https://images.unsplash.com/photo-1544256718-3bcf237f3974?w=600&h=400&fit=crop' },
+    { id: 15, name: 'Digital Warrior', background_image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&h=400&fit=crop' },
+    { id: 16, name: 'Cyber Mage', background_image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&h=400&fit=crop' },
+    { id: 17, name: 'Tech Hunter', background_image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=400&fit=crop' },
+    { id: 18, name: 'Neon Rogue', background_image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&h=400&fit=crop' },
+    { id: 19, name: 'Virtual Ninja', background_image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop' },
+    { id: 20, name: 'Cyber Assassin', background_image: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=600&h=400&fit=crop' }
+  ],
+  fantasy: [
+    { id: 21, name: 'Elden Ring', background_image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&h=400&fit=crop' },
+    { id: 22, name: 'Dragon Quest', background_image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop' },
+    { id: 23, name: 'Magic Knight', background_image: 'https://images.unsplash.com/photo-1529310399831-ed472b81d589?w=600&h=400&fit=crop' },
+    { id: 24, name: 'Wizard Wars', background_image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop' },
+    { id: 25, name: 'Mystic Realm', background_image: 'https://images.unsplash.com/photo-1552058544-f2b08422138a?w=600&h=400&fit=crop' },
+    { id: 26, name: 'Elven Hero', background_image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&h=400&fit=crop' },
+    { id: 27, name: 'Shadow Paladin', background_image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&h=400&fit=crop' },
+    { id: 28, name: 'Ancient Warrior', background_image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&h=400&fit=crop' },
+    { id: 29, name: 'Celestial Mage', background_image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&h=400&fit=crop' },
+    { id: 30, name: 'Dragon Rider', background_image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&h=400&fit=crop' },
+    { id: 31, name: 'Forest Guardian', background_image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&h=400&fit=crop' },
+    { id: 32, name: 'Crystal Sorcerer', background_image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&h=400&fit=crop' },
+    { id: 33, name: 'Demon Slayer', background_image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop' },
+    { id: 34, name: 'Royal Knight', background_image: 'https://images.unsplash.com/photo-1552058544-f2b08422138a?w=600&h=400&fit=crop' },
+    { id: 35, name: 'Arcane Archer', background_image: 'https://images.unsplash.com/photo-1529310399831-ed472b81d589?w=600&h=400&fit=crop' },
+    { id: 36, name: 'Spirit Warrior', background_image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&h=400&fit=crop' },
+    { id: 37, name: 'Moon Priestess', background_image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&h=400&fit=crop' },
+    { id: 38, name: 'Shadow Assassin', background_image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&h=400&fit=crop' },
+    { id: 39, name: 'Frost Mage', background_image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&h=400&fit=crop' },
+    { id: 40, name: 'Fire Knight', background_image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&h=400&fit=crop' }
+  ],
+  horror: [
+    { id: 41, name: 'Resident Evil', background_image: 'https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=600&h=400&fit=crop' },
+    { id: 42, name: 'Silent Nightmare', background_image: 'https://images.unsplash.com/photo-1566753323558-f4e0952af115?w=600&h=400&fit=crop' },
+    { id: 43, name: 'Dead Space', background_image: 'https://images.unsplash.com/photo-1519058082700-08a0b56da9b4?w=600&h=400&fit=crop' },
+    { id: 44, name: 'Zombie Hunter', background_image: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=600&h=400&fit=crop' },
+    { id: 45, name: 'Dark Entity', background_image: 'https://images.unsplash.com/photo-1583195764036-6dc248ac07d9?w=600&h=400&fit=crop' },
+    { id: 46, name: 'Cursed Manor', background_image: 'https://images.unsplash.com/photo-1603113864525-157f89e83334?w=600&h=400&fit=crop' },
+    { id: 47, name: 'Shadow Lurker', background_image: 'https://images.unsplash.com/photo-1532635241-17e820acc59f?w=600&h=400&fit=crop' },
+    { id: 48, name: 'Undead Rising', background_image: 'https://images.unsplash.com/photo-1566753323558-f4e0952af115?w=600&h=400&fit=crop' },
+    { id: 49, name: 'Nightmare Realm', background_image: 'https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=600&h=400&fit=crop' },
+    { id: 50, name: 'Haunted Souls', background_image: 'https://images.unsplash.com/photo-1519058082700-08a0b56da9b4?w=600&h=400&fit=crop' },
+    { id: 51, name: 'Asylum Terror', background_image: 'https://images.unsplash.com/photo-1583195764036-6dc248ac07d9?w=600&h=400&fit=crop' },
+    { id: 52, name: 'Ghost Protocol', background_image: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=600&h=400&fit=crop' },
+    { id: 53, name: 'Evil Within', background_image: 'https://images.unsplash.com/photo-1603113864525-157f89e83334?w=600&h=400&fit=crop' },
+    { id: 54, name: 'Demon Hunter', background_image: 'https://images.unsplash.com/photo-1532635241-17e820acc59f?w=600&h=400&fit=crop' },
+    { id: 55, name: 'Dark Descent', background_image: 'https://images.unsplash.com/photo-1566753323558-f4e0952af115?w=600&h=400&fit=crop' },
+    { id: 56, name: 'Blood Moon', background_image: 'https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=600&h=400&fit=crop' },
+    { id: 57, name: 'Outlast', background_image: 'https://images.unsplash.com/photo-1519058082700-08a0b56da9b4?w=600&h=400&fit=crop' },
+    { id: 58, name: 'Slender', background_image: 'https://images.unsplash.com/photo-1583195764036-6dc248ac07d9?w=600&h=400&fit=crop' },
+    { id: 59, name: 'Dying Light', background_image: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=600&h=400&fit=crop' },
+    { id: 60, name: 'Condemned', background_image: 'https://images.unsplash.com/photo-1603113864525-157f89e83334?w=600&h=400&fit=crop' }
+  ],
+  oldstyle: [
+    { id: 61, name: 'Super Mario', background_image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=400&fit=crop' },
+    { id: 62, name: 'Pac-Man', background_image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop' },
+    { id: 63, name: 'Donkey Kong', background_image: 'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=600&h=400&fit=crop' },
+    { id: 64, name: 'Tetris', background_image: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=600&h=400&fit=crop' },
+    { id: 65, name: 'Galaga', background_image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&h=400&fit=crop' },
+    { id: 66, name: 'Space Invaders', background_image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&h=400&fit=crop' },
+    { id: 67, name: 'Sonic', background_image: 'https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=600&h=400&fit=crop' },
+    { id: 68, name: 'Street Fighter', background_image: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=600&h=400&fit=crop' },
+    { id: 69, name: 'Mortal Kombat', background_image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&h=400&fit=crop' },
+    { id: 70, name: 'Mega Man', background_image: 'https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=600&h=400&fit=crop' },
+    { id: 71, name: 'Castlevania', background_image: 'https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=600&h=400&fit=crop' },
+    { id: 72, name: 'Contra', background_image: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=600&h=400&fit=crop' },
+    { id: 73, name: 'Metroid', background_image: 'https://images.unsplash.com/photo-1544256718-3bcf237f3974?w=600&h=400&fit=crop' },
+    { id: 74, name: 'Zelda', background_image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&h=400&fit=crop' },
+    { id: 75, name: 'Bubble Bobble', background_image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&h=400&fit=crop' },
+    { id: 76, name: 'Bomberman', background_image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=400&fit=crop' },
+    { id: 77, name: 'Kirby', background_image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&h=400&fit=crop' },
+    { id: 78, name: 'Final Fantasy', background_image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop' },
+    { id: 79, name: 'Dragon Ball', background_image: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=600&h=400&fit=crop' },
+    { id: 80, name: 'Punch-Out', background_image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&h=400&fit=crop' }
+  ],
+  retro: [
+    { id: 81, name: 'Celeste', background_image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&h=400&fit=crop' },
+    { id: 82, name: 'Hollow Knight', background_image: 'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=600&h=400&fit=crop' },
+    { id: 83, name: 'Shovel Knight', background_image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=400&fit=crop' },
+    { id: 84, name: 'Stardew Valley', background_image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop' },
+    { id: 85, name: 'Undertale', background_image: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=600&h=400&fit=crop' },
+    { id: 86, name: 'Cuphead', background_image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&h=400&fit=crop' },
+    { id: 87, name: 'Hotline Miami', background_image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&h=400&fit=crop' },
+    { id: 88, name: 'Dead Cells', background_image: 'https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=600&h=400&fit=crop' },
+    { id: 89, name: 'Enter Gungeon', background_image: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=600&h=400&fit=crop' },
+    { id: 90, name: 'Hyper Light', background_image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&h=400&fit=crop' },
+    { id: 91, name: 'Katana Zero', background_image: 'https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=600&h=400&fit=crop' },
+    { id: 92, name: 'Terraria', background_image: 'https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=600&h=400&fit=crop' },
+    { id: 93, name: 'Binding Isaac', background_image: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=600&h=400&fit=crop' },
+    { id: 94, name: 'Risk of Rain', background_image: 'https://images.unsplash.com/photo-1544256718-3bcf237f3974?w=600&h=400&fit=crop' },
+    { id: 95, name: 'Fez', background_image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&h=400&fit=crop' },
+    { id: 96, name: 'Axiom Verge', background_image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&h=400&fit=crop' },
+    { id: 97, name: 'Owlboy', background_image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=400&fit=crop' },
+    { id: 98, name: 'Spelunky', background_image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&h=400&fit=crop' },
+    { id: 99, name: 'Braid', background_image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop' },
+    { id: 100, name: 'Super Meat Boy', background_image: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=600&h=400&fit=crop' }
+  ]
 };
 
 export async function fetchPopularGames(count: number = 8, theme: ThemeType = 'vaporwave'): Promise<Game[]> {
-  try {
-    const genreId = genreIds[theme];
-    const query = themeQueries[theme];
-
-    const response = await fetch(
-      `${BASE_URL}/games?key=${API_KEY}&genres=${genreId}&tags=${query}&page_size=${count}&ordering=-rating&metacritic=75,100`
-    );
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch games');
-    }
-
-    const data = await response.json();
-
-    return data.results.map((game: any, index: number) => ({
-      id: game.id || index,
-      name: game.name || `Game ${index + 1}`,
-      background_image: game.background_image || 'https://via.placeholder.com/400x300?text=No+Image'
-    }));
-  } catch (error) {
-    console.error('Error fetching games:', error);
-    return [];
-  }
+  const games = themeGames[theme] || themeGames.vaporwave;
+  return Promise.resolve(games.slice(0, count));
 }
