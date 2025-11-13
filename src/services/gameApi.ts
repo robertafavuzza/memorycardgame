@@ -1,120 +1,47 @@
 import type { Game } from '../types/game';
 import type { ThemeType } from '../types/theme';
 
-const themeImages: Record<ThemeType, Game[]> = {
-  vaporwave: [
-    { id: 1, name: 'Neon Palm', background_image: 'https://images.pexels.com/photos/1118877/pexels-photo-1118877.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 2, name: 'Sunset Grid', background_image: 'https://images.pexels.com/photos/1933239/pexels-photo-1933239.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 3, name: 'Pink Dreams', background_image: 'https://images.pexels.com/photos/1154638/pexels-photo-1154638.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 4, name: 'Cyber Wave', background_image: 'https://images.pexels.com/photos/2988232/pexels-photo-2988232.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 5, name: 'Retro Neon', background_image: 'https://images.pexels.com/photos/2440024/pexels-photo-2440024.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 6, name: 'Purple Haze', background_image: 'https://images.pexels.com/photos/1631677/pexels-photo-1631677.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 7, name: 'Synthwave Sky', background_image: 'https://images.pexels.com/photos/1679618/pexels-photo-1679618.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 8, name: 'Arcade Night', background_image: 'https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 9, name: 'Vapor Lights', background_image: 'https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 10, name: 'Neon City', background_image: 'https://images.pexels.com/photos/1170412/pexels-photo-1170412.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 11, name: 'Pink Aesthetic', background_image: 'https://images.pexels.com/photos/1906658/pexels-photo-1906658.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 12, name: 'Glitch Art', background_image: 'https://images.pexels.com/photos/2085831/pexels-photo-2085831.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 13, name: 'Retro Vibes', background_image: 'https://images.pexels.com/photos/2132180/pexels-photo-2132180.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 14, name: 'Cyber Pink', background_image: 'https://images.pexels.com/photos/3861458/pexels-photo-3861458.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 15, name: 'Neon Dreams', background_image: 'https://images.pexels.com/photos/1363876/pexels-photo-1363876.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 16, name: 'Synthwave', background_image: 'https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 17, name: 'Vaporwave', background_image: 'https://images.pexels.com/photos/1687901/pexels-photo-1687901.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 18, name: 'Neon Glow', background_image: 'https://images.pexels.com/photos/2228561/pexels-photo-2228561.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 19, name: 'Retro Future', background_image: 'https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 20, name: 'Digital Wave', background_image: 'https://images.pexels.com/photos/2246476/pexels-photo-2246476.jpeg?auto=compress&cs=tinysrgb&w=600' }
-  ],
-  fantasy: [
-    { id: 21, name: 'Magic Castle', background_image: 'https://images.pexels.com/photos/356966/pexels-photo-356966.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 22, name: 'Enchanted Forest', background_image: 'https://images.pexels.com/photos/1496373/pexels-photo-1496373.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 23, name: 'Crystal Cave', background_image: 'https://images.pexels.com/photos/1671324/pexels-photo-1671324.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 24, name: 'Dragon Mountain', background_image: 'https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 25, name: 'Wizard Tower', background_image: 'https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 26, name: 'Fairy Garden', background_image: 'https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 27, name: 'Ancient Ruins', background_image: 'https://images.pexels.com/photos/161963/moon-landscape-mountain-range-space-161963.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 28, name: 'Mystic Portal', background_image: 'https://images.pexels.com/photos/1089306/pexels-photo-1089306.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 29, name: 'Elf Village', background_image: 'https://images.pexels.com/photos/1576937/pexels-photo-1576937.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 30, name: 'Magic Lake', background_image: 'https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 31, name: 'Golden Palace', background_image: 'https://images.pexels.com/photos/1583339/pexels-photo-1583339.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 32, name: 'Moonlit Path', background_image: 'https://images.pexels.com/photos/1578750/pexels-photo-1578750.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 33, name: 'Celestial Sky', background_image: 'https://images.pexels.com/photos/1169754/pexels-photo-1169754.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 34, name: 'Mythic Beast', background_image: 'https://images.pexels.com/photos/209831/pexels-photo-209831.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 35, name: 'Sacred Temple', background_image: 'https://images.pexels.com/photos/2044434/pexels-photo-2044434.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 36, name: 'Star Portal', background_image: 'https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 37, name: 'Dream Valley', background_image: 'https://images.pexels.com/photos/1671325/pexels-photo-1671325.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 38, name: 'Magic Realm', background_image: 'https://images.pexels.com/photos/1624496/pexels-photo-1624496.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 39, name: 'Aurora Sky', background_image: 'https://images.pexels.com/photos/1933316/pexels-photo-1933316.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 40, name: 'Eternal Spring', background_image: 'https://images.pexels.com/photos/1072179/pexels-photo-1072179.jpeg?auto=compress&cs=tinysrgb&w=600' }
-  ],
-  horror: [
-    { id: 41, name: 'Dark Manor', background_image: 'https://images.pexels.com/photos/1002740/pexels-photo-1002740.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 42, name: 'Haunted House', background_image: 'https://images.pexels.com/photos/54295/pexels-photo-54295.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 43, name: 'Creepy Forest', background_image: 'https://images.pexels.com/photos/1423600/pexels-photo-1423600.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 44, name: 'Abandoned Asylum', background_image: 'https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 45, name: 'Graveyard', background_image: 'https://images.pexels.com/photos/2101566/pexels-photo-2101566.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 46, name: 'Dark Alley', background_image: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 47, name: 'Foggy Night', background_image: 'https://images.pexels.com/photos/1723637/pexels-photo-1723637.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 48, name: 'Blood Moon', background_image: 'https://images.pexels.com/photos/1252500/pexels-photo-1252500.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 49, name: 'Shadow Realm', background_image: 'https://images.pexels.com/photos/1363876/pexels-photo-1363876.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 50, name: 'Cursed Church', background_image: 'https://images.pexels.com/photos/1386604/pexels-photo-1386604.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 51, name: 'Ghost Town', background_image: 'https://images.pexels.com/photos/2088205/pexels-photo-2088205.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 52, name: 'Dead Tree', background_image: 'https://images.pexels.com/photos/842711/pexels-photo-842711.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 53, name: 'Nightmare', background_image: 'https://images.pexels.com/photos/730256/pexels-photo-730256.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 54, name: 'Witch Lair', background_image: 'https://images.pexels.com/photos/1210273/pexels-photo-1210273.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 55, name: 'Crypt', background_image: 'https://images.pexels.com/photos/1529881/pexels-photo-1529881.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 56, name: 'Stormy Night', background_image: 'https://images.pexels.com/photos/1114690/pexels-photo-1114690.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 57, name: 'Dark Corridor', background_image: 'https://images.pexels.com/photos/1292885/pexels-photo-1292885.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 58, name: 'Skeleton', background_image: 'https://images.pexels.com/photos/1544947/pexels-photo-1544947.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 59, name: 'Demon Lair', background_image: 'https://images.pexels.com/photos/1387037/pexels-photo-1387037.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 60, name: 'Underworld', background_image: 'https://images.pexels.com/photos/2166927/pexels-photo-2166927.jpeg?auto=compress&cs=tinysrgb&w=600' }
-  ],
-  oldstyle: [
-    { id: 61, name: 'Vintage Camera', background_image: 'https://images.pexels.com/photos/414781/pexels-photo-414781.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 62, name: 'Old Books', background_image: 'https://images.pexels.com/photos/1130980/pexels-photo-1130980.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 63, name: 'Antique Clock', background_image: 'https://images.pexels.com/photos/280254/pexels-photo-280254.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 64, name: 'Typewriter', background_image: 'https://images.pexels.com/photos/261510/pexels-photo-261510.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 65, name: 'Gramophone', background_image: 'https://images.pexels.com/photos/167490/pexels-photo-167490.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 66, name: 'Old Map', background_image: 'https://images.pexels.com/photos/1078850/pexels-photo-1078850.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 67, name: 'Pocket Watch', background_image: 'https://images.pexels.com/photos/1034063/pexels-photo-1034063.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 68, name: 'Vintage Car', background_image: 'https://images.pexels.com/photos/3802508/pexels-photo-3802508.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 69, name: 'Old Telephone', background_image: 'https://images.pexels.com/photos/163007/phone-old-year-built-1955-bakelite-163007.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 70, name: 'Sepia Portrait', background_image: 'https://images.pexels.com/photos/735987/pexels-photo-735987.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 71, name: 'Vintage Bicycle', background_image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 72, name: 'Old Letter', background_image: 'https://images.pexels.com/photos/1670770/pexels-photo-1670770.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 73, name: 'Antique Keys', background_image: 'https://images.pexels.com/photos/313690/pexels-photo-313690.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 74, name: 'Old Compass', background_image: 'https://images.pexels.com/photos/1098515/pexels-photo-1098515.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 75, name: 'Vintage Radio', background_image: 'https://images.pexels.com/photos/744780/pexels-photo-744780.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 76, name: 'Old Trunk', background_image: 'https://images.pexels.com/photos/2079249/pexels-photo-2079249.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 77, name: 'Antique Mirror', background_image: 'https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 78, name: 'Vintage Lamp', background_image: 'https://images.pexels.com/photos/416320/pexels-photo-416320.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 79, name: 'Old Globe', background_image: 'https://images.pexels.com/photos/1098515/pexels-photo-1098515.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 80, name: 'Sepia Scenery', background_image: 'https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?auto=compress&cs=tinysrgb&w=600' }
-  ],
-  retro: [
-    { id: 81, name: 'Arcade Machine', background_image: 'https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 82, name: 'Cassette Tape', background_image: 'https://images.pexels.com/photos/1626481/pexels-photo-1626481.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 83, name: 'Vinyl Record', background_image: 'https://images.pexels.com/photos/164821/pexels-photo-164821.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 84, name: 'Pixel Art', background_image: 'https://images.pexels.com/photos/1229042/pexels-photo-1229042.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 85, name: 'Old TV', background_image: 'https://images.pexels.com/photos/1201996/pexels-photo-1201996.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 86, name: 'Boombox', background_image: 'https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 87, name: 'Game Console', background_image: 'https://images.pexels.com/photos/371924/pexels-photo-371924.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 88, name: 'Neon Signs', background_image: 'https://images.pexels.com/photos/1749900/pexels-photo-1749900.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 89, name: 'Retro Diner', background_image: 'https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 90, name: 'Walkman', background_image: 'https://images.pexels.com/photos/3756766/pexels-photo-3756766.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 91, name: 'Rotary Phone', background_image: 'https://images.pexels.com/photos/163008/phone-booth-pay-phone-telephone-phone-163008.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 92, name: 'Jukebox', background_image: 'https://images.pexels.com/photos/164821/pexels-photo-164821.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 93, name: 'Roller Skates', background_image: 'https://images.pexels.com/photos/1618269/pexels-photo-1618269.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 94, name: 'Pac-Man', background_image: 'https://images.pexels.com/photos/163036/mario-luigi-yoschi-figures-163036.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 95, name: 'Rubik Cube', background_image: 'https://images.pexels.com/photos/19677/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 96, name: 'Polaroid', background_image: 'https://images.pexels.com/photos/1619654/pexels-photo-1619654.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 97, name: 'VHS Tape', background_image: 'https://images.pexels.com/photos/1210273/pexels-photo-1210273.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 98, name: '80s Fashion', background_image: 'https://images.pexels.com/photos/1040945/pexels-photo-1040945.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 99, name: 'Neon Lights', background_image: 'https://images.pexels.com/photos/2681319/pexels-photo-2681319.jpeg?auto=compress&cs=tinysrgb&w=600' },
-    { id: 100, name: 'Retro Gaming', background_image: 'https://images.pexels.com/photos/1174746/pexels-photo-1174746.jpeg?auto=compress&cs=tinysrgb&w=600' }
-  ]
+const API_KEY = 'a7bbbda5551a49c2826cd3e85a3db86c';
+const BASE_URL = 'https://api.rawg.io/api';
+
+const themeQueries: Record<ThemeType, string> = {
+  vaporwave: 'cyberpunk,synthwave',
+  fantasy: 'fantasy,magic,medieval',
+  horror: 'horror,survival-horror,zombie',
+  oldstyle: 'retro,classic,arcade',
+  retro: 'platformer,indie,pixel-graphics'
+};
+
+const genreIds: Record<ThemeType, number> = {
+  vaporwave: 51,
+  fantasy: 51,
+  horror: 3,
+  oldstyle: 4,
+  retro: 83
 };
 
 export async function fetchPopularGames(count: number = 8, theme: ThemeType = 'vaporwave'): Promise<Game[]> {
-  const images = themeImages[theme] || themeImages.vaporwave;
-  return Promise.resolve(images.slice(0, count));
+  try {
+    const genreId = genreIds[theme];
+    const query = themeQueries[theme];
+
+    const response = await fetch(
+      `${BASE_URL}/games?key=${API_KEY}&genres=${genreId}&tags=${query}&page_size=${count}&ordering=-rating&metacritic=75,100`
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch games');
+    }
+
+    const data = await response.json();
+
+    return data.results.map((game: any, index: number) => ({
+      id: game.id || index,
+      name: game.name || `Game ${index + 1}`,
+      background_image: game.background_image || 'https://via.placeholder.com/400x300?text=No+Image'
+    }));
+  } catch (error) {
+    console.error('Error fetching games:', error);
+    return [];
+  }
 }
